@@ -22,11 +22,17 @@
                       go-mode
                       textmate
                       tramp
-                      marmalade))
+                      marmalade
+                      shell-here
+                      org
+                      monokai-theme
+                      magit))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+
+(require 'magit)
 
 (require 'ido)
 (require 'ibuffer)
@@ -40,9 +46,12 @@
 
 (require 'textmate)
 
-(setq ispell-program-name "aspell")
+(setq ispell-program-name "~/Developer/bin/aspell")
 
-(load-theme 'adwaita)
+(require 'shell-here)
+(define-key (current-global-map) "\C-c!" 'shell-here)
+
+(load-theme 'monokai)
 (set-default-font "Droid Sans Mono-14")
 
 ;; rbenv
@@ -91,6 +100,12 @@
                 recentf-list)))
       (message "Opening file...")
     (message "Aborting")))
+
+(setq ruby-deep-indent-paren nil)
+
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 (global-set-key (kbd "C-x C-k") 'kill-region)
