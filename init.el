@@ -112,7 +112,7 @@
 (global-set-key (kbd "C-M-=") 'align-equal-signs)
 (global-set-key [C-M-return] 'ns-toggle-fullscreen)
 (global-set-key (kbd "M-g") 'goto-line)
-(global-set-key (kbd "C-c C-g") 'gist-buffer)
-(global-set-key (kbd "C-c C-p") 'gist-buffer-private)
+(global-set-key (kbd "C-c C-g") 'magit-status)
+(global-set-key (kbd "C-c p") 'gist-buffer-private)
 
 (server-start)
