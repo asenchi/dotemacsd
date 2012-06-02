@@ -25,7 +25,8 @@
                       marmalade
                       shell-here
                       org
-                      monokai-theme
+                      color-theme
+                      color-theme-molokai
                       magit))
 
 (dolist (p my-packages)
@@ -51,8 +52,8 @@
 (require 'shell-here)
 (define-key (current-global-map) "\C-c!" 'shell-here)
 
-(load-theme 'monokai)
-(set-default-font "Droid Sans Mono-14")
+(color-theme-molokai)
+(set-default-font "Droid Sans Mono-18")
 
 ;; rbenv
 (setq exec-path (cons "~/.rbenv/bin" exec-path))
