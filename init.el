@@ -34,8 +34,9 @@
     (package-install p)))
 
 (require 'magit)
-
 (require 'ido)
+(require 'textmate)
+
 (require 'ibuffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq ibuffer-expert t)
@@ -43,17 +44,17 @@
 (require 'tramp)
 (setq tramp-default-method "scp")
 
+(require 'gist)
 (setq gist-view-gist 1)
-
-(require 'textmate)
 
 (setq ispell-program-name "~/Developer/bin/aspell")
 
 (require 'shell-here)
 (define-key (current-global-map) "\C-c!" 'shell-here)
 
+(require 'color-theme)
 (color-theme-molokai)
-(set-default-font "Droid Sans Mono-18")
+(set-default-font "Droid Sans Mono-14")
 
 ;; rbenv
 (setq exec-path (cons "~/.rbenv/bin" exec-path))
