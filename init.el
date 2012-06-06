@@ -18,20 +18,21 @@
                       color-theme
                       color-theme-molokai
                       egg
+                      full-ack
                       gist
                       go-mode
-                      helm
-                      helm-git
                       magit
                       markdown-mode
                       marmalade
+                      melpa
                       org
                       shell-here
                       starter-kit
                       starter-kit-bindings
                       starter-kit-ruby
                       textmate
-                      tramp))
+                      tramp
+                      yaml-mode))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -59,6 +60,22 @@
 (require 'color-theme)
 (color-theme-molokai)
 (set-default-font "Droid Sans Mono-14")
+
+;; org
+(require 'org-install)
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "|" "DONE(d)")
+        (sequence "ISSUE(i)" "|" "FIXED(f)")))
+(setq org-todo-keyword-faces
+      '(("TODO" . org-warning)
+        ("ISSUE" . (:foreground "white" :weight bold))))
+(org-remember-insinuate)
+(setq org-directory "~/Projects/orgfiles")
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+(setq org-remember-templates
+      '(("TODO" ?t "* TODO %?\n  %i\n  %a" "~/Projects/orgfiles/todos.org" "Tasks")
+        ("NOTES" ?n "* %U %?\n\n  %i\n %a" "~/Projects/orgfiles/notes.org" "Notes")))
+(setq org-agenda-files '("~/Projects/orgfiles"))
 
 ;; rbenv
 (setq exec-path (cons "~/.rbenv/bin" exec-path))
@@ -123,7 +140,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\)$" . org-mode))
 
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 (global-set-key (kbd "C-x C-k") 'kill-region)
@@ -132,5 +149,9 @@
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-c C-g") 'magit-status)
 (global-set-key (kbd "C-c p") 'gist-buffer-private)
+(global-set-key (kbd "C-c r") 'org-remember)
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c b") 'org-iswitchb)
 
 (server-start)
