@@ -6,28 +6,32 @@
 
 ;; packages
 (require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+
 (package-initialize)
 
 (when (not package-archive-contents)
   (package-refresh-contents))
 
 (defvar my-packages '(
+                      color-theme
+                      color-theme-molokai
+                      egg
+                      gist
+                      go-mode
+                      helm
+                      helm-git
+                      magit
+                      markdown-mode
+                      marmalade
+                      org
+                      shell-here
                       starter-kit
                       starter-kit-bindings
                       starter-kit-ruby
-                      markdown-mode
-                      gist
-                      go-mode
                       textmate
-                      tramp
-                      marmalade
-                      shell-here
-                      org
-                      color-theme
-                      color-theme-molokai
-                      magit))
+                      tramp))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
