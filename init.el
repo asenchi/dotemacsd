@@ -61,14 +61,21 @@
 (color-theme-molokai)
 (set-default-font "Droid Sans Mono-14")
 
+(setq default-frame-alist
+      (append
+       (list '(width . 120) '(height . 60))
+       default-frame-alist))
+
 ;; org
 (require 'org-install)
 (setq org-todo-keywords
       '((sequence "TODO(t)" "|" "DONE(d)")
-        (sequence "ISSUE(i)" "|" "FIXED(f)")))
+        (sequence "ISSUE(i)" "|" "FIXED(f)")
+        (sequence "FEATURE(f)" "TESTS(T)" "DOCS(D)" "|" "COMPLETE(c)")))
 (setq org-todo-keyword-faces
       '(("TODO" . org-warning)
-        ("ISSUE" . (:foreground "white" :weight bold))))
+        ("ISSUE" . (:foreground "white" :weight bold))
+        ("FEATURE" . (:foreground "yellow" :weight bold))))
 (org-remember-insinuate)
 (setq org-directory "~/Projects/orgfiles")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
@@ -149,6 +156,7 @@
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-c C-g") 'magit-status)
 (global-set-key (kbd "C-c p") 'gist-buffer-private)
+(global-set-key (kbd "C-c C-r") 'org-remember)
 (global-set-key (kbd "C-c r") 'org-remember)
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
