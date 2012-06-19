@@ -63,7 +63,7 @@
 
 (setq default-frame-alist
       (append
-       (list '(width . 120) '(height . 60))
+       (list '(width . 120) '(height . 42))
        default-frame-alist))
 
 ;; org
