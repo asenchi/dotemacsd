@@ -144,6 +144,39 @@
     (message "Aborting")))
 
 (setq ruby-deep-indent-paren nil)
+(defun ruby-end-of-block-or-parens ()
+  (interactive)
+  (if (looking-at "\[({[\]")
+      (forward-list)
+    (ruby-end-of-block)))
+
+(defun ruby-beginning-of-block-or-parens ()
+  (interactive)
+  (let ((char (buffer-substring (1- (point)) (point))))
+    (if (looking-at "\[)}]\]")
+        (backward-list)
+      (ruby-beginning-of-block))))
+
+(defun magit-kill-file-on-line ()
+  "Show file on current magit line and prompt for deletion."
+  (interactive)
+  (magit-visit-item)
+  (delete-current-buffer-file)
+  (magit-refresh))
+
+(defadvice magit-status (around magit-fullscreen activate)
+  (window-configuration-to-register :magit-fullscreen)
+  ad-do-it
+  (delete-other-windows))
+
+(defun magit-quit-session ()
+  "Restores the previous window configuration and kills the magit buffer"
+  (interactive)
+  (kill-buffer)
+  (jump-to-register :magit-fullscreen))
+
+(define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
+(define-key magit-status-mode-map (kbd "C-x C-k") 'magit-kill-file-on-line)
 
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
@@ -163,5 +196,7 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
+(global-set-key (kbd "C-M-n") 'ruby-end-of-block-or-parens)
+(global-set-key (kbd "C-M-p") 'ruby-beginning-of-block-or-parens)
 
 (server-start)
