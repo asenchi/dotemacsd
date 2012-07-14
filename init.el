@@ -14,29 +14,32 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(
-                      color-theme
-                      color-theme-molokai
-                      egg
-                      full-ack
-                      gist
-                      go-mode
-                      magit
-                      markdown-mode
-                      marmalade
-                      melpa
-                      org
-                      shell-here
-                      starter-kit
-                      starter-kit-bindings
-                      starter-kit-ruby
-                      textmate
-                      tramp
-                      yaml-mode))
+(defvar my-packages 
+  '(color-theme
+    color-theme-molokai
+    egg
+    full-ack
+    gist
+    go-mode
+    magit
+    markdown-mode
+    marmalade
+    melpa
+    org
+    shell-here
+    starter-kit
+    starter-kit-bindings
+    starter-kit-ruby
+    textmate
+    tramp
+    yaml-mode))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
 
 (require 'magit)
 (require 'ido)
@@ -114,6 +117,17 @@
 (column-number-mode t)
 (setq show-trailing-whitespace t)
 (setq insert-time-string-default-format "iso-8601-date")
+(setq-default truncate-lines t)
+(setq echo-keystrokes 0.1)
+(setq locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(setq x-select-enable-clipboard t)
+(global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-verbose nil)
 
 (dolist (command '(yank yank-pop))
   (eval `(defadvice ,command (after indent-region activate)
