@@ -157,6 +157,10 @@
       (message "Opening file...")
     (message "Aborting")))
 
+(setq c-default-style "bsd"
+      c-basic-offset 8
+      indent-tabs-mode t)
+
 (setq ruby-deep-indent-paren nil)
 (defun ruby-end-of-block-or-parens ()
   (interactive)
