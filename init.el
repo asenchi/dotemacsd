@@ -72,19 +72,14 @@
 ;; org
 (require 'org-install)
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "|" "DONE(d)")
-        (sequence "ISSUE(i)" "|" "FIXED(f)")
-        (sequence "FEATURE(f)" "TESTS(T)" "DOCS(D)" "|" "COMPLETE(c)")))
+      '((sequence "TODO(t)" "|" "DONE(d)")))
 (setq org-todo-keyword-faces
-      '(("TODO" . org-warning)
-        ("ISSUE" . (:foreground "white" :weight bold))
-        ("FEATURE" . (:foreground "yellow" :weight bold))))
+      '(("TODO" . org-warning)))
 (org-remember-insinuate)
 (setq org-directory "~/Projects/orgfiles")
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 (setq org-remember-templates
-      '(("TODO" ?t "* TODO %?\n  %i\n  %a" "~/Projects/orgfiles/todos.org" "Tasks")
-        ("NOTES" ?n "* %U %?\n\n  %i\n %a" "~/Projects/orgfiles/notes.org" "Notes")))
+      '(("TODO" ?t "* TODO %?\n  %i\n  %a" "~/Projects/orgfiles/todos.org" "Tasks")))
 (setq org-agenda-files '("~/Projects/orgfiles"))
 
 ;; rbenv
