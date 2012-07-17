@@ -60,8 +60,8 @@
 (require 'shell-here)
 (define-key (current-global-map) "\C-c!" 'shell-here)
 
-(require 'color-theme)
-(color-theme-molokai)
+;; (require 'color-theme)
+;; (color-theme-molokai)
 (set-default-font "Droid Sans Mono-14")
 
 (setq default-frame-alist
