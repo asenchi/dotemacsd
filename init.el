@@ -4,6 +4,9 @@
 
 (require 'cl)
 
+;(setenv "ESHELL" (expand-file-name "~/Developer/bin/eshell"))
+(setq system-uses-terminfo nil)
+
 ;; packages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
