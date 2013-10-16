@@ -1,3 +1,4 @@
+;; test
 (mapcar (lambda (path)
           (add-to-list 'exec-path path))
         (split-string (getenv "PATH") ":"))
